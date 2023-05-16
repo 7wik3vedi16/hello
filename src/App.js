@@ -64,7 +64,7 @@ function Board() {
       </div>
       </dic>
      <div className='greeting'>
-      <h1>{greeting}</h1>
+      <h2>{greeting}</h2>
       </div>
       <div>
       <button onClick={refreshPage}>{again}</button>

@@ -16,6 +16,7 @@
   
   h2 {
     margin-top: 0;
+    font-size: 30px;
   }
   
   h3 {
@@ -131,7 +132,7 @@
   }
   .greeting
   {
-    margin-top:100px;
+    margin-top:80px;
     margin-right:250px;
   }
   .reload

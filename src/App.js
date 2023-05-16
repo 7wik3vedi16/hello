@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import Header from "./header";
 import {useRef} from 'react';
 
 
 function Square({value, onSquareClick,xIsNext1,x=0}) {
   return (
     <>
-    <button className="square"  style={{background:((xIsNext1!=null?(xIsNext1=='X'?"red":"green"):"yellow"))}} onClick={onSquareClick}>
+    <button className="square"  style={{background:((xIsNext1!=null?(xIsNext1==='X'?"red":"green"):"yellow"))}} onClick={onSquareClick}>
       {value}
     </button>
     </>
@@ -68,7 +67,7 @@ function Board() {
       <h1>{greeting}</h1>
       </div>
       <div>
-      <button onClick={refreshPage}>Click to reload!</button>
+      <button onClick={refreshPage}>{again}</button>
     </div>
     </>
   );
@@ -95,8 +94,8 @@ function calculateWinner(squares) {
 }
 
 export default function Game() {
-  const [xIsNext, setXIsNext] = useState(true);
-  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [xIsNext] = useState(true);
+  const [history] = useState([Array(9).fill(null)]);
   const currentSquares = history[history.length - 1];
 
   function handlePlay(nextSquares) {

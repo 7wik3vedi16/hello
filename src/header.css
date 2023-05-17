@@ -1,18 +1,21 @@
  .header {
-    padding: 25px 0;
-    text-align: center;
-    background: #6c3c3c;
-    height:500px;
-  }
-  .header img {
-    margin:auto;
-    width: 250px;
-    height: 250px;
-  } 
-  h1
-  {
-    font-size: 120px;
-    color:rgb(2, 26, 46);
-  }
-  
+   text-align: center;
+   background: #6c3c3c;
+   height: 100vh;
+   position:relative;
+   margin: auto;
+ }
 
+ .header img {
+   margin: auto;
+   width: 250px;
+   height: 250px;
+ }
+.header button{
+  margin-top: 50px;
+}
+ h1 {
+   font-size: 450%;
+   color: rgb(2, 26, 46);
+   padding: 30px;
+ }

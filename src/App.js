@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import {useRef} from 'react';
+import { useRef } from 'react';
+import header1 from './tic.png'
+import "./header.css";
 
-
-function Square({value, onSquareClick,xIsNext1,x=0}) {
+function Square({ value, onSquareClick, xIsNext1, x = 0 }) {
   return (
     <>
-    <button className="square"  style={{background:((xIsNext1!=null?(xIsNext1==='X'?"red":"green"):"yellow"))}} onClick={onSquareClick}>
-      {value}
-    </button>
+      <button className="square" style={{ background: ((xIsNext1 != null ? (xIsNext1 === 'X' ? "red" : "green") : "yellow")) }} onClick={onSquareClick}>
+        {value}
+      </button>
     </>
   );
 }
@@ -28,14 +29,14 @@ function Board({ xIsNext, squares, onPlay }) {
   }
   function refreshPage() {
     window.location.reload(false);
-    }
+  }
   const winner = calculateWinner(squares);
-  let status,greeting,again;
-  again="Reload!";
+  let status, greeting, again;
+  again = "Reload!";
   if (winner) {
     status = "Winner: " + winner;
-    greeting="Hurray!!";
-    again="Once More : /";
+    greeting = "Hurray!!";
+    again = "Once More : /";
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
@@ -44,28 +45,28 @@ function Board({ xIsNext, squares, onPlay }) {
     <>
       <div className="status">{status}</div>
       <dic className="board">
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} xIsNext1={squares[0]} x={1}/>
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} xIsNext1={squares[1]} x={2}/>
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} xIsNext1={squares[2]} x={3}/>
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} xIsNext1={squares[3]} x={4}/>
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} xIsNext1={squares[4]} x={5}/>
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} xIsNext1={squares[5]} x={6}/>
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} xIsNext1={squares[6]} x={7}/>
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} xIsNext1={squares[7]} x={8}/>
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} xIsNext1={squares[8]} x={9}/>
-      </div>
+        <div className="board-row">
+          <Square value={squares[0]} onSquareClick={() => handleClick(0)} xIsNext1={squares[0]} x={1} />
+          <Square value={squares[1]} onSquareClick={() => handleClick(1)} xIsNext1={squares[1]} x={2} />
+          <Square value={squares[2]} onSquareClick={() => handleClick(2)} xIsNext1={squares[2]} x={3} />
+        </div>
+        <div className="board-row">
+          <Square value={squares[3]} onSquareClick={() => handleClick(3)} xIsNext1={squares[3]} x={4} />
+          <Square value={squares[4]} onSquareClick={() => handleClick(4)} xIsNext1={squares[4]} x={5} />
+          <Square value={squares[5]} onSquareClick={() => handleClick(5)} xIsNext1={squares[5]} x={6} />
+        </div>
+        <div className="board-row">
+          <Square value={squares[6]} onSquareClick={() => handleClick(6)} xIsNext1={squares[6]} x={7} />
+          <Square value={squares[7]} onSquareClick={() => handleClick(7)} xIsNext1={squares[7]} x={8} />
+          <Square value={squares[8]} onSquareClick={() => handleClick(8)} xIsNext1={squares[8]} x={9} />
+        </div>
       </dic>
-     <div className='greeting'>
-      <h2>{greeting}</h2>
+      <div className='greeting'>
+        <h2>{greeting}</h2>
       </div>
       <div>
-      <button className='reload' onClick={refreshPage}>{again}</button>
-    </div>
+        <button className='reload' onClick={refreshPage}>{again}</button>
+      </div>
     </>
   );
 }
@@ -114,31 +115,32 @@ export default function Game() {
     }
     return (
       <li key={move}>
-      <button className='moves' onClick={() => jumpTo(move)}>{description}</button>
-    </li>
+        <button className='moves' onClick={() => jumpTo(move)}>{description}</button>
+      </li>
     );
   });
 
   const ref = useRef(null);
 
   const handleClick = () => {
-    ref.current?.scrollIntoView({behavior: 'smooth'});
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="game">
-    <div className='Play'>
-      <div className='Play-button'>
-      <button className='Let' onClick={handleClick}>Let me try!</button>
+    <>
+      <div className='header'>
+        <h1>TIC-TAC-TOE</h1><br></br>
+        <img src={header1} alt="" /><br></br>
+
+        <button className='Let' onClick={handleClick}>Let me try!</button>
       </div>
-    
+
       <div ref={ref} className="game-board">
-      <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-      <div className="game-info">
-        <ol>{moves}</ol>
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        <div className="game-info">
+          <ol>{moves}</ol>
+        </div>
       </div>
-      </div>
-      </div>
-    </div>
+    </>
   );
 }
